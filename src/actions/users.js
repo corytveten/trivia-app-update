@@ -1,7 +1,7 @@
 export const addUser = user => {
     return {
         type: 'ADD_USER',
-        user: Object.assign({}, user, { score: 0})
+        payload: Object.assign({}, user, { score: 0, isLoggedIn: true })
     }
 }
 

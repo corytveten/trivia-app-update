@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import User from '../components/User';
+
 import LoginForm from '../components/LoginForm';
 import SignUpForm from '../components/SignUpForm';
 import User from '../components/User';
 
 
-
-
 class UsersContainer extends Component {
+    state = {
+        currentUser: ''
+    }
+
+    
 
     render() {
         console.log(this.props.users)
+        const loggedUser = this.props.users.find(user => {
+            return user.isLoggedIn
+        });
+        console.log(loggedUser)
         return (
             <div>
                 <SignUpForm />
                 <LoginForm />
-                <User />
+                <User user={loggedUser} />
             </div>
         )
     }
@@ -24,7 +31,7 @@ class UsersContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-      users: state.users
+      users: state.usersReducer
     }
   }
 
